@@ -1,0 +1,75 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/gestionUsuarios.css">
+    <link rel="stylesheet" href="../static/css/estilosRegistro.css">
+    <title>Registros Usuarios</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/color4.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px; background-color: rgba(175, 64, 8, 0.8) !important; border-color: rgba(175, 64, 8, 0.8) !important;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/administrador"><strong>←
+            SALIR</strong></a>
+
+    <div class="container" style="background-color: rgba(175, 64, 8, 0.483) !important;" >
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                ⭐⭐⭐ Valoraciones ⭐⭐⭐
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(175, 64, 8, 0.8) !important; color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">VALORACION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for valoraciones in valoracion %}
+
+                        <tr>
+                            <th>
+                                {{valoraciones.usuario}}
+                            </th>
+                            <th>
+                                {{valoraciones.valoracion}}
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <hr>
+
+    
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-usuarios.js') }}"></script>
+<script src='../static/js/script-usuarios.js'></script>
+
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

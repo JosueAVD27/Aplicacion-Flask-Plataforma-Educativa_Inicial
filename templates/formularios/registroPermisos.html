@@ -1,0 +1,160 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estiloRegistroPermisos.css">
+    <link rel="stylesheet" href="../static/css/modal.css">
+    <title>Registro Academico</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/morado.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/administrador"><strong>←
+            SALIR</strong></a>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 30px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/form.png" width="10%"> FORMULARIO DE PERMISOS
+            </h1>
+        </div>
+        <hr>
+        <div class="formulariosAcademicos">
+            <div class="formularioAcademico1">
+                <h3 class="display-5"
+                    style="font-size: 25px; text-align: center !important; font-weight: bold; margin-bottom: -30px !important;">
+                    Registrar Rol
+                </h3>
+                <form action="registrarRol" method="POST" style="padding: 5%;" class="row g-3 needs-validation"
+                    novalidate>
+                    <div class="row ceparacion">
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Nombre de Rol *</label>
+                                <select class="campo-lista form-control" id="Prol" name="P_rol">
+                                    <option value="">Seleccione un rol:</option>
+                                    <option value="Estudiante">Estudiante</option>
+                                    <option value="Docente">Docente</option>
+                                    <option value="Administrador">Administrador</option>
+                                </select>
+                                <div id="mensaje1" class="errores erroresnombre">Ingrese un rol</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Permiso *</label>
+                                <select class="campo-lista form-control" name="P_permisoR" id="PpermisoR">
+                                    <option value="">Seleccione un permiso:</option>
+                                    {% for permiso in permisosL %}
+                                        <option value="{{permiso}}">{{permiso}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div id="mensaje2" class="errores erroresnombre">Ingrese un permiso</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-outline">
+                                <label for="">Descripción *</label>
+                                <textarea name="P_descripcionR" id="PdescripcionR" rows="5" class="campo form-control"
+                                    placeholder="Ingrese una descripción"></textarea>
+                                <div id="mensaje3" class="errores erroresnombre">Ingrese una descripción del rol</div>
+                            </div>
+                        </div>
+                        <div class="exterior-btn">
+                            <input type="submit" id="REnviar" value="Enviar"
+                                class="col-lg-2 btn btn-primary btn-centro1">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="formularioAcademico2">
+                <h3 class="display-5"
+                    style="font-size: 25px; text-align: center !important; font-weight: bold; margin-bottom: -30px !important;">
+                    Registrar Permiso
+                </h3>
+                <form action="registrarPermiso" method="POST" style="padding: 5%;" class="row g-3 needs-validation"
+                    novalidate>
+                    <div class="row ceparacion">
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Nombre *</label>
+                                <input type="text" name="P_nombre" id="Pnombre" class="campo form-control"
+                                    placeholder="Ingrese un nombre de permiso" required>
+                                <div id="mensaje4" class="errores erroresnombre">Ingrese el nombre del permiso</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Tipo de Permiso *</label>
+                                <select class="campo-lista form-control" id="Ppermiso" name="P_permiso">
+                                    <option value="">Seleccione el tipo de permiso:</option>
+                                    <option value="Lector">Lector</option>
+                                    <option value="Gerencial">Gerencial</option>
+                                    <option value="Administrativo">Administrativo</option>
+                                </select>
+                                <div id="mensaje5" class="errores erroresnombre">Ingrese el permiso</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-outline">
+                                <label for="">Descripción *</label>
+                                <textarea name="P_descripcion" id="Pdescripcion" rows="5" class="campo form-control"
+                                    placeholder="Ingrese una descripción"></textarea>
+                                <div id="mensaje6" class="errores erroresnombre">Ingrese una descripción del permiso
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exterior-btn">
+                            <input type="submit" id="PEnviar" value="Enviar"
+                                class="col-lg-2 btn btn-primary btn-centro2">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <hr>
+
+    <div class="cont-btn-x">
+        <a class="btn btn-primary btn-y" href="/asignacionesPermisos">Lista de permisos</a>
+        <a class="btn btn-primary btn-x" href="/gestionPermisos">Gestion de Permisos</a>
+    </div>
+    <hr>
+
+    {% block correctoPermiso %}
+    {% endblock %}
+
+    {% block correctoRol%}
+    {% endblock %}
+
+    {% block errorPermisoExiste %}
+    {% endblock %}
+
+    {% block errorRolExiste%}
+    {% endblock %}
+
+    
+
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-academico.js') }}"></script>
+<script src='../static/js/script-permisos.js'></script>
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

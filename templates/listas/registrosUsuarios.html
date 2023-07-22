@@ -1,0 +1,186 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estilosRegistro.css">
+    <title>Registros Usuarios</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/verde2.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/administrador"><strong>←
+            SALIR</strong></a>
+    <div class="cont-btn-x" style="position: absolute; top: 150px; right: 150px;">
+        <a class="btn btn-primary btn-y" href="/registroUsuario">Registrar</a>
+    </div>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/administrador.png" width="8%"> Administradores
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(0, 114, 21, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th scope="col">ID</th>
+                        <th scope="col">NICKNAME</th>
+                        <th scope="col">CORREO</th>
+                        <th style="width: 100px !important;" scope="col"></th>
+                        <th style="width: 100px !important;" scope="col"><a href="/gestionUsuarios" id="eli"
+                            class="btn btn-danger btn-black">Gestionar Usuarios</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for admin in administradores %}
+                    <tr>
+                        <!---->
+                        <th>{{admin._id}}</th>
+                        <th>{{admin.usuario}}</th>
+                        <th>{{admin.correo}}</th>
+                        <th>
+                            <a href="/registroUsuario" id="eli"
+                                class="btn btn-primary btn-blue">Registrar Usuarios</a>
+                        </th>
+                        <th>
+                            <a href="{{url_for('eliminarRU', id_usuario=admin._id)}}" id="eli"
+                                class="btn btn-primary btn-red">Eliminar</a>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <hr>
+
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/docente.png" width="8%"> Docentes
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(0, 114, 21, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th scope="col">NICKNAME</th>
+                        <th scope="col">NOMBRE Y APELLIDO</th>
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">CORREO</th>
+                        <th scope="col">MATERIA</th>
+                        <th scope="col">CURSO</th>
+                        <th scope="col"><a href="/gestionUsuarios" id="eli"
+                            class="btn btn-danger btn-black">Gestionar Usuarios</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for docente in docentes %}
+                    <tr>
+                        <!---->
+                        <th>{{docente.usuario}}</th>
+                        <th>{{docente.nombre}} {{docente.apellido}}</th>
+                        <th>{{docente.cedula}}</th>
+                        <th>{{docente.correo}}</th>
+                        <th>{{docente.materia}}</th>
+                        <th>{{docente.curso}}</th>
+                        <th>
+                            <a href="{{url_for('eliminarRU', id_usuario=docente._id)}}" id="eli"
+                                class="btn btn-danger btn-red">Eliminar</a>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+
+    <hr>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/estudiante.png" width="8%"> Estudiantes
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+
+            <table class="table" style="background-color: rgba(0, 114, 21, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th scope="col">NICKNAME</th>
+                        <th scope="col">NOMBRE Y APELLIDO</th>
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">CORREO</th>
+                        <th scope="col">MATERIA</th>
+                        <th scope="col">CURSO</th>
+                        <th scope="col"><a href="/gestionUsuarios" id="eli"
+                            class="btn btn-danger btn-black">Gestionar Usuarios</a></th>
+                        <!--<th scope="col"></th>-->
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for estudiante in estudiantes %}
+                    <tr>
+                        <!---->
+                        <th>{{estudiante.usuario}}</th>
+                        <th>{{estudiante.nombre}} {{estudiante.apellido}}</th>
+                        <th>{{estudiante.cedula}}</th>
+                        <th>{{estudiante.correo}}</th>
+                        <th>{{estudiante.materia}}</th>
+                        <th>{{estudiante.curso}}</th>
+                        <!--<th>
+                            <button name="{{estudiante._id}}" id="btn-abrir-popup" onclick="abrir(event)" class="btn btn-danger btn-blue">Editar</button>
+                        </th>-->
+                        <th>
+                            <a href="{{url_for('eliminarRU', id_usuario=estudiante._id)}}" id="eli"
+                                class="btn btn-danger btn-red">Eliminar</a>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+
+
+
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-usuarios.js') }}"></script>
+<script src='../static/js/script-usuarios.js'></script>
+
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

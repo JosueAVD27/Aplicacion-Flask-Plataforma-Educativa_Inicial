@@ -1,0 +1,143 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="../static/css/estilosgame.css">
+  <link rel="stylesheet" href="../static/css/estilosPuntuacion.css">
+  <link rel="stylesheet" href="../static/css/valoracion.css">
+  <title>Hangman</title>
+</head>
+
+<body onload="carga()">
+  <video src="../static/assets/Video/video2.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+  <div class="container1">
+    <div class="col" style="position: absolute; width: 10%;">
+      <a class="btn btn-lg btn-warning btn-block btn-danger" style="font-size: 15px; z-index: 10;" href="/"><strong>←
+          SALIR</strong></a>
+    </div>
+    <div>
+      <a class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px; z-index: 10; position: fixed; width: 250px; height: 60px; right: 5%; padding-top: 20px !important;"
+        href="/valoracion"><strong>★★★ Valorar ★★★</strong></a>
+
+    </div>
+    <h1 class="text-center"><strong>El ahorcado</strong></h1>
+    <p></p>
+    <div class="row" style="top: 120px; width: 250px;">
+
+      <div class="col">
+        <div class="float-right" style="color: green;"><b>Respuestas:</b> <span id='mistakes'>0</span> de <span
+            id='maxWrong'></span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="float-right" style="color: red;"><b>Tiempo:</b> <span id="minutos">0</span>:<span
+            id="segundos">0</span>
+        </div>
+      </div>
+      <div>
+        <div class="col">
+          {% for user in usuario %}
+          <div class="float-right"><b>Usuario:</b> <input type="text" class="controlUsuario" value="{{user.usuario}}"
+              name="userT"></div>
+          {% endfor %}
+        </div>
+
+        <div class="col">
+          {% for nombres in nombre %}
+          <div class="float-right"><b>Estudiante:</b> {{nombres.nombre}} {{nombres.apellido}}</div>
+          {% endfor %}
+        </div>
+
+        <div class="col">
+          {% for materias in materia %}
+          <div class="float-right"><b>Materia:</b> {{materias.materia}}</div>
+          {% endfor %}
+        </div>
+
+        <div class="col">
+          {% for cursos in curso %}
+          <div class="float-right"><b>Curso:</b> {{cursos.curso}}</div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <div class="col">
+        <a class="btn btn-lg btn-warning btn-block" style="font-size: 15px; z-index: 10;"
+          href="/game"><strong>Practica</strong></a>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="row-3">
+        <div class="col-lg-6">
+          <img id='hangmanPic' src="../static/assets/Imagen/0.jpg" alt="">
+        </div>
+        <div class="col-lg-6">
+          <div id="perder"></div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="text-center" style="padding-top: 17%;">
+      <p></p>
+      <p id="wordSpotlight">La palabra que hay que adivinar va aquí.</p>
+      <div id="keyboard"></div>
+      <button class="btn btn-info" onClick="reset()"
+        style="background-color: transparent;border-color: transparent;"><span class="glyphicon glyphicon-refresh"
+          style="font-size: 45px; color: rgb(255, 0, 0);"></span></button>
+    </div>
+  </div>
+
+  {% block valoracion %}
+  {% endblock %}
+
+  <form action="/puntuacionx" method="post">
+    <div class="container contenedorM">
+      <div>
+        <div align="center" class="mensajeM" style="font-size: 12px; width: 100%;">
+          <div class="modal-header">
+            <h5 class="modal-title" style="padding-top: 10%; font-size: 15px; color: black !important">
+              <strong>Enviar puntuación</strong>
+            </h5>
+          </div>
+          <div>
+
+            {% for user in usuarioy %}
+            <input type="text" class="errores" value="{{user.nombre}}" name="nombreT">
+            <input type="text" class="errores" value="{{user.apellido}}" name="apellidoT">
+            <input type="text" class="errores" value="{{user.cedula}}" name="cedulaT">
+            <input type="text" class="errores" value="{{user.correo}}" name="correoT">
+            <input type="text" class="errores" value="{{user.materia}}" name="materiaT">
+            {% endfor %}
+
+
+            <p align="center">Su puntuacion es: <input class="controlUsuario" id="valorx" name="puntuacionT" value="100"
+                style="width: 50px; color: green;"></p>
+
+          </div>
+          <div class="modal-footer" style="padding-right: 0%;">
+            <input type="submit" id="PEnviar" value="Enviar" class="btn  btn-success"
+              style="width: 100%; font-size: 10px;" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+
+</body>
+
+</html>
+
+<script src='../static/js/hangman.js'></script>
+<script src='../static/js/contador.js'></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+{% endblock %}

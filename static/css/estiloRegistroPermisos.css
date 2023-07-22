@@ -1,0 +1,193 @@
+/*Estilo body*/
+body {
+    background-color: rgb(197, 237, 247);
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size: 15px !important;  
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    background-color: rgba(95, 62, 117, 0.583);
+    color: white;
+}
+
+/*Propiedades del video insertado como background*/
+video {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.btn{
+    border-color: rgb(49, 10, 62) !important;
+    background-color: rgb(49, 10, 62) !important;
+}
+
+.btn-centro1{
+    position: absolute !important;
+    height: 40px !important;
+    font-size: 15px !important;
+    left: 19%;
+    width: 250px !important;
+}
+
+.btn-centro1:hover{
+    background-color: rgb(91, 23, 137) !important;
+}
+
+.btn-centro2{
+    position: absolute !important;
+    height: 40px !important;
+    font-size: 15px !important;
+    right: 21%;
+    width: 250px !important;
+}
+
+.btn-centro2:hover{
+    background-color: rgb(91, 23, 137) !important;
+}
+
+.exterior-btn{
+    padding-top: 10px;
+    
+}
+
+
+.tarjeta-borde{
+    border: solid 2px rgb(49, 10, 62);
+    background-color: rgb(49, 10, 62);
+    border-radius: 5px;
+    padding: 15px;
+    padding-bottom: 25px;
+}
+
+.btn-tarjetas{
+    margin-top: 10px !important;
+    width: 100px !important;
+}
+
+.btn-red{
+    background-color: rgb(147, 0, 0) !important;
+    border-radius: 5px !important;
+    width: 100px !important;
+    
+}
+
+.btn-red:hover{
+    background-color: rgb(197, 0, 0) !important;
+    
+}
+
+.btn-blue{
+    background-color: rgb(0, 26, 142) !important;
+    border-radius: 5px !important;
+    width: 100px !important;
+}
+
+.btn-blue:hover{
+    background-color: rgb(0, 38, 208) !important;
+}
+
+.btn-black{
+    display: grid !important;
+    background-color: rgb(0, 0, 0) !important;
+    width: 100px !important;
+    height: 30px;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
+    justify-items: center !important;
+    border:rgb(0, 0, 0) !important;
+}
+
+.btn-black:hover{
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0)!important;
+}
+
+.btn-x{
+    display: flex;
+    padding: 10px !important;
+    width: 150px !important;
+    background-color: black !important;
+    font-size: 15px !important;
+    margin-left: 20px !important;
+}
+
+.btn-x:hover{
+    background-color: rgb(28, 0, 47) !important;
+}
+
+.btn-y{
+    display: flex;
+    padding: 10px !important;
+    width: 150px !important;
+    background-color: black !important;
+    font-size: 15px !important;
+    margin-right: 20px !important;
+}
+
+.btn-y:hover{
+    background-color: rgb(28, 0, 47) !important;
+}
+
+.cont-btn-x{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
+    justify-items: center !important;
+}
+
+
+.campo-lista{
+    height: 34px !important;
+}
+
+.ceparacion>div{
+    padding-top: 30px !important;
+}
+
+.errores{
+    background-color: red;
+    display: none;
+    font-weight: bolder;
+    color: aliceblue;
+    position: absolute;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.controlUsuario{
+    background-color: rgba(162, 1, 237, 0) !important;
+    border: none !important;
+    outline: none !important;
+    color: white !important;
+    font-size: 20px !important;
+    margin-bottom: 10px;
+}
+
+.formulariosAcademicos{
+    display: flex;
+}
+
+.formulariosAcademicos>div{
+    width: 100%;
+}
+
+.formularioAcademico1{
+    border-right: solid 1px rgba(245, 245, 245, 0.377);
+}
+
+.formularioAcademico2{
+    border-left: solid 1px rgba(245, 245, 245, 0.377);
+}

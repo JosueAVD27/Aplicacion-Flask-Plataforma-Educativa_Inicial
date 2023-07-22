@@ -1,0 +1,162 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estilosRegistro.css">
+    <link rel="stylesheet" href="../static/css/modal.css">
+    <title>Registro Usuario</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/verde.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/administrador"><strong>←
+            SALIR</strong></a>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5"
+                style="font-size: 30px; text-align: center !important; font-weight: bold; margin-bottom: -40px !important;">
+                <img src="../static/assets/Imagen/form.png" width="10%"> FORMULARIO DE REGISTRO
+            </h1>
+        </div>
+        <form action="registrarUsuario" method="POST" style="padding: 5%;" class="row g-3 needs-validation" novalidate>
+            <div class="row ceparacion">
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Tipo de usuario *</label>
+                        <select class="campo-lista form-control" id="Urol" name="U_rol">
+                            {% for roles in rol %}
+                            <option value="{{roles}}">{{roles}}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="mensaje6" class="errores erroresnombre">Seleccione un tipo de usuario</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Nombre de Usuario *</label>
+                        <input type="text" name="U_nombreUser" id="UnombreUser" class="campo form-control"
+                            placeholder="Ingrese un nombre de usuario" required>
+                        <div id="mensaje9" class="errores erroresnombre">Elija un nombre de usuario</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Nombre -*</label>
+                        <input type="text" name="U_nombre" id="Unombre" class="campo form-control"
+                            placeholder="Ingrese su nombre" disabled>
+                        <div id="mensaje1" class="errores erroresnombre">Ingrese un nombre</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Apellido -*</label>
+                        <input type="text" name="U_apellido" id="Uapellido" class="campo form-control"
+                            placeholder="Ingrese su apellido" disabled>
+                        <div id="mensaje2" class="errores erroresnombre">Ingrese un apellido</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Identificación -*</label>
+                        <input type="number" name="U_cedula" id="Ucedula" class="campo form-control"
+                            placeholder="Ingrese su cedula" disabled>
+                        <div id="mensaje3" class="errores erroresnombre">Ingrese una identificación</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">E-mail *</label>
+                        <input type="email" name="U_correo" id="Ucorreo" class="campo form-control"
+                            placeholder="Ingrese su correo">
+                        <div id="mensaje4" class="errores erroresnombre">Ingrese un correo</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Materia</label>
+                        <select class="campo-lista form-control" id="Umateria" name="U_materia" disabled>
+                            <option value="No asignado">Elija una asignatura:</option>
+                            {% for materiax in materia %}
+                            <option value="{{materiax}}">{{materiax}}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="mensaje7" class="errores erroresnombre">Elija una materia</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Curso</label>
+                        <select class="campo-lista form-control" id="Ucurso" name="U_curso" disabled>
+                            <option value="No asignado">Elija un curso</option>
+                            {% for cursox in curso %}
+                            <option value="{{cursox.nivel}} {{cursox.curso}}">{{cursox.nivel}} {{cursox.curso}}</option>
+                            {% endfor %}
+                            </select>
+                        <div id="mensaje8" class="errores erroresnombre">Elija un curso</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Contraseña -*</label>
+                        <input type="password" name="U_contrasenia" id="Ucontrasenia" class="campo form-control"
+                            placeholder="Ingrese una contraseña">
+                        <div id="mensaje5" class="errores erroresnombre">Ingrese una contraseña</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-outline">
+                        <label for="">Foto -*</label>
+                        <input type="file" name="U_foto" id="Ufoto" class="campo form-control"
+                            placeholder="Elija una foto" disabled>
+                        <div id="mensaje10" class="errores erroresnombre">Elija una foto</div>
+                    </div>
+                </div>
+                <div class="exterior-btn">
+                    <input type="submit" id="UEnviar" value="Enviar" class="col-lg-2 btn btn-primary btn-centro">
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+    <hr>
+    <div class="cont-btn-x">
+        <a class="btn btn-primary btn-y" href="/registrosUsuarios">Lista Usuarios</a>
+        <a class="btn btn-primary btn-x" href="/gestionUsuarios">Gestion Usuarios</a>
+    </div>
+    <hr>
+
+    {% block correctoUsuario %}
+    {% endblock %}
+    
+    {% block errorCedula %}
+    {% endblock %}
+
+    {% block errorCorreo %}
+    {% endblock %}
+
+    {% block errorUsuarioDuplicado %}
+    {% endblock %}
+
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-usuarios.js') }}"></script>
+<script src='../static/js/script-usuarios.js'></script>
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

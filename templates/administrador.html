@@ -1,0 +1,104 @@
+{% extends 'head.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estilosAdministrador.css">
+    <title>Administrador</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/admin.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px; left: 10px;"
+        class="btn btn-lg btn-warning btn-block btn-danger" style="font-size: 15px" href="/"><strong>←
+            SALIR</strong></a>
+    <div class="container">
+        <div class="row heading heading-icon">
+            <h1 class="display-5"
+                style="font-size: 30px; text-align: center !important; font-weight: bold; margin-bottom: -40px !important;">
+                <img src="../static/assets/Imagen/man.gif" width="6%">PANEL DE CONTROL
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!--TABLA VISUALIZAR-->
+                <div class="sitio">
+                    <div class="contenedor">
+                        <hr>
+                        <h1>Asignaciones:</h1>
+                        <div class="col tree" style="display:flex" align="center">
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(34, 81, 145); border-color: rgb(34, 81, 145); color: white;"
+                                    href="/registroUsuario"><strong>Registrar Usuarios</strong></a>
+                            </div>
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(34, 81, 145); border-color: rgb(34, 81, 145); color: white;"
+                                    href="/registroAcademico"><strong>Registro Academico</strong></a>
+                            </div>
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(34, 81, 145); border-color: rgb(34, 81, 145); color: white;"
+                                    href="/registroPermisos"><strong>Registro Permisos</strong></a>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <h1>Registros:</h1>
+                        <div class="col tree" style="display:flex" align="center">
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(34, 81, 145); border-color: rgb(34, 81, 145); color: white;"
+                                    href="/registrosUsuarios"><strong>Registro Usuarios</strong></a>
+                            </div>
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(34, 81, 145); border-color: rgb(34, 81, 145); color: white;"
+                                    href="/asignacionesAcademicas"><strong>Asignaciones Academicas</strong></a>
+                            </div>
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(34, 81, 145); border-color: rgb(34, 81, 145); color: white;"
+                                    href="/asignacionesPermisos"><strong>Asignaciones de Permisos</strong></a>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="col tree" style="display:flex" align="center">
+                            <div class="cnt-block equal-hight two">
+                                <a class="btn btn-lg btn-warning btn-block color-btn"
+                                    style="background-color: rgb(145, 132, 34); border-color: rgb(145, 132, 34); color: white;"
+                                    href="/informeValoraciones"><strong>⭐⭐⭐ Valoraciones ⭐⭐⭐</strong></a>
+                            </div>
+                        </div>
+
+                        <hr>
+                    </div>
+                    <div class="row heading heading-icon">
+                        <h1 class="display-5"
+                            style="font-size: 30px; text-align: center !important; font-weight: bold; margin-bottom: -40px !important;">
+                            <img src="../static/assets/Imagen/gato.gif" width="15%">
+                        </h1>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/script-usuarios.js') }}"></script>
+<script src='../static/js/script-usuarios.js'></script>
+<script src='../static/js/script.js'></script>
+<script src='../static/js/admin.js'></script>
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

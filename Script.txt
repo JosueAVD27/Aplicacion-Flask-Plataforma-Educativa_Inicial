@@ -1,0 +1,70 @@
+> show dbs
+admin       0.000GB
+config      0.000GB
+dbJosueV    0.000GB
+dbNPersons  0.000GB
+dbPractica  0.000GB
+local       0.000GB
+miscelanea  0.031GB
+> use juegoMongoDB
+switched to db juegoMongoDB
+> db.createCollection('maestro')
+{ "ok" : 1 }
+> db.createCollection('alumno')
+{ "ok" : 1 }
+> db.createCollection('juego')
+{ "ok" : 1 }
+> show collections
+alumno
+juego
+maestro
+> db.maestro.insertOne({"_id": 1,"dni": "2350793218", "nombre": "Josue", "apellido_1": "Velasquez", "apellido_2": "Delgado", "correo": "ajvelasquez4@espe.edu.ec", "usuario": "JosueV", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 1 }
+> db.maestro.insertOne({"_id": 2,"dni": "2350162182", "nombre": "Daniela", "apellido_1": "Gonzalez", "apellido_2": "Moran", "correo": "dbgonzalez1@espe.edu.ec", "usuario": "DanielaGM", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 2 }
+> db.maestro.insertOne({"_id": 3,"dni": "", "nombre": "Admin", "apellido_1": "", "apellido_2": "", "correo": "admin@espe.edu.ec", "usuario": "admin", "contrasenia": "admin"})
+{ "acknowledged" : true, "insertedId" : 3 }
+> db.maestro.find()
+{ "_id" : 1, "dni" : "2350793218", "nombre" : "Josue", "apellido_1" : "Velasquez", "apellido_2" : "Delgado", "correo" : "ajvelasquez4@espe.edu.ec", "usuario" : "JosueV", "contrasenia" : "12345" }
+{ "_id" : 2, "dni" : "2350162182", "nombre" : "Daniela", "apellido_1" : "Gonzalez", "apellido_2" : "Moran", "correo" : "dbgonzalez1@espe.edu.ec", "usuario" : "DanielaGM", "contrasenia" : "12345" }
+{ "_id" : 3, "dni" : "", "nombre" : "Admin", "apellido_1" : "", "apellido_2" : "", "correo" : "admin@espe.edu.ec", "usuario" : "admin", "contrasenia" : "admin" }
+>
+>
+> db.alumno.insertOne({"_id": 1,"dni": "2300255468", "nombre": "Juanito", "apellido_1": "Perez", "apellido_2": "Perez", "correo": "jxperez1@gmail.com", "usuario": "Juanito123", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 1 }
+> db.alumno.insertOne({"_id": 2,"dni": "2300296468", "nombre": "Maria", "apellido_1": "Castro", "apellido_2": "Lopez", "correo": "macastro@gmail.com", "usuario": "MariaDG", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 2 }
+> db.alumno.insertOne({"_id": 3,"dni": "2300255468", "nombre": "Jonathan", "apellido_1": "Uribe", "apellido_2": "Llano", "correo": "jduribe@gmail.com", "usuario": "JonathanUL", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 3 }
+> db.alumno.insertOne({"_id": 4,"dni": "2300125468", "nombre": "Gabriel", "apellido_1": "Vaca", "apellido_2": "Campo", "correo": "gjvaca@gmail.com", "usuario": "Gabriel", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 4 }
+> db.alumno.insertOne({"_id": 5,"dni": "2300255468", "nombre": "Karla", "apellido_1": "Ordoñez", "apellido_2": "Salazar", "correo": "klordoñez@gmail.com", "usuario": "KarlaX3", "contrasenia": "12345"})
+{ "acknowledged" : true, "insertedId" : 5 }
+> db.alumno.find()
+{ "_id" : 1, "dni" : "2300255468", "nombre" : "Juanito", "apellido_1" : "Perez", "apellido_2" : "Perez", "correo" : "jxperez1@gmail.com", "usuario" : "Juanito123", "contrasenia" : "12345" }
+{ "_id" : 2, "dni" : "2300296468", "nombre" : "Maria", "apellido_1" : "Castro", "apellido_2" : "Lopez", "correo" : "macastro@gmail.com", "usuario" : "MariaDG", "contrasenia" : "12345" }
+{ "_id" : 3, "dni" : "2300255468", "nombre" : "Jonathan", "apellido_1" : "Uribe", "apellido_2" : "Llano", "correo" : "jduribe@gmail.com", "usuario" : "JonathanUL", "contrasenia" : "12345" }
+{ "_id" : 4, "dni" : "2300125468", "nombre" : "Gabriel", "apellido_1" : "Vaca", "apellido_2" : "Campo", "correo" : "gjvaca@gmail.com", "usuario" : "Gabriel", "contrasenia" : "12345" }
+{ "_id" : 5, "dni" : "2300255468", "nombre" : "Karla", "apellido_1" : "Ordoñez", "apellido_2" : "Salazar", "correo" : "klordoñez@gmail.com", "usuario" : "KarlaX3", "contrasenia" : "12345" }
+>
+>
+> db.juego.insertOne({"_id": 1,"id_maestro": "1", "id_alumno": "1"})
+{ "acknowledged" : true, "insertedId" : 1 }
+> db.juego.insertOne({"_id": 2,"id_maestro": "1", "id_alumno": "2"})
+{ "acknowledged" : true, "insertedId" : 2 }
+> db.juego.insertOne({"_id": 3,"id_maestro": "2", "id_alumno": "5"})
+{ "acknowledged" : true, "insertedId" : 3 }
+> db.juego.insertOne({"_id": 4,"id_maestro": "2", "id_alumno": "3"})
+{ "acknowledged" : true, "insertedId" : 4 }
+> db.juego.insertOne({"_id": 5,"id_maestro": "3", "id_alumno": "1"})
+{ "acknowledged" : true, "insertedId" : 5 }
+> db.juego.insertOne({"_id": 6,"id_maestro": "3", "id_alumno": "6"})
+{ "acknowledged" : true, "insertedId" : 6 }
+> db.juego.find()
+{ "_id" : 1, "id_maestro" : "1", "id_alumno" : "1" }
+{ "_id" : 2, "id_maestro" : "1", "id_alumno" : "2" }
+{ "_id" : 3, "id_maestro" : "2", "id_alumno" : "5" }
+{ "_id" : 4, "id_maestro" : "2", "id_alumno" : "3" }
+{ "_id" : 5, "id_maestro" : "3", "id_alumno" : "1" }
+{ "_id" : 6, "id_maestro" : "3", "id_alumno" : "6" }
+>

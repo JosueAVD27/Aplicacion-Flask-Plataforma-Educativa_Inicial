@@ -1,0 +1,165 @@
+/*Estilo body*/
+body {
+    background-color: rgb(197, 237, 247);
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size: 15px !important;  
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    background-color: rgba(62, 117, 68, 0.583);
+    color: white;
+}
+
+/*Propiedades del video insertado como background*/
+video {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.btn{
+    border-color: rgb(11, 69, 28) !important;
+    background-color: rgb(11, 69, 28) !important;
+}
+
+.btn-centro{
+    position: absolute !important;
+    height: 40px !important;
+    font-size: 15px !important;
+    right: 42%;
+}
+
+.btn-centro:hover{
+    background-color: rgb(23, 137, 57) !important;
+}
+
+.exterior-btn{
+    padding-top: 10px;
+    
+}
+
+
+.tarjeta-borde{
+    border: solid 2px rgb(10, 62, 25);
+    background-color: rgba(11, 69, 28, 0.623);
+    border-radius: 5px;
+    padding: 15px;
+    padding-bottom: 25px;
+}
+
+.btn-tarjetas{
+    margin-top: 10px !important;
+    width: 100px !important;
+}
+
+.btn-red{
+    background-color: rgb(100, 0, 0) !important;
+    border-radius: 5px !important;
+    width: 100px !important;
+}
+
+.btn-red:hover{
+    background-color: rgb(147, 0, 0) !important;
+    
+}
+
+.btn-blue{
+    background-color: rgb(0, 26, 142) !important;
+    border-radius: 5px !important;
+}
+
+.btn-blue:hover{
+    background-color: rgb(0, 38, 208) !important;
+}
+
+.btn-black{
+    display: grid !important;
+    background-color: rgb(0, 0, 0) !important;
+    width: 100px !important;
+    height: 30px;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
+    justify-items: center !important;
+    border:rgb(0, 0, 0) !important;
+}
+
+.btn-black:hover{
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0)!important;
+}
+
+.btn-x{
+    display: flex;
+    padding: 10px !important;
+    width: 150px !important;
+    background-color: black !important;
+    font-size: 15px !important;
+    margin-left: 20px !important;
+}
+
+.btn-x:hover{
+    background-color: rgb(0, 47, 9) !important;
+}
+
+.btn-y{
+    display: flex;
+    padding: 10px !important;
+    width: 150px !important;
+    background-color: black !important;
+    font-size: 15px !important;
+    margin-right: 20px !important;
+}
+
+.btn-y:hover{
+    background-color: rgb(0, 47, 9) !important;
+}
+
+.cont-btn-x{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
+    justify-items: center !important;
+}
+
+.campo-lista{
+    height: 34px !important;
+}
+
+.ceparacion>div{
+    padding-top: 30px !important;
+}
+
+.errores{
+    background-color: red;
+    display: none;
+    font-weight: bolder;
+    color: aliceblue;
+    position: absolute;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.controlUsuario{
+    background-color: rgba(238, 238, 238, 0) !important;
+    border: none !important;
+    outline: none !important;
+    color: white !important;
+    font-size: 20px !important;
+    margin-bottom: 10px;
+}
+
+.btn-formato{
+    padding: 500px !important;
+}

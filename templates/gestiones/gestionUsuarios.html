@@ -1,0 +1,341 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/gestionUsuarios.css">
+    <link rel="stylesheet" href="../static/css/estilosRegistro.css">
+    <title>Registros Usuarios</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/verde3.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/registrosUsuarios"><strong>←
+            SALIR</strong></a>
+    <div class="cont-btn-x" style="position: absolute; top: 150px; right: 150px;">
+        <a class="btn btn-primary btn-y" href="/registroUsuario">Registrar</a>
+    </div>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/administrador.png" width="8%"> Administradores
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(0, 114, 21, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th style="width: 160px !important;" scope="col">ID</th>
+                        <th style="width: 60px !important;" scope="col">NICKNAME</th>
+                        <th style="width: 100px !important;" scope="col">NOMBRE</th>
+                        <th style="width: 100px !important;" scope="col">APELLIDO</th>
+                        <th style="width: 90px !important;" scope="col">CEDULA</th>
+                        <th style="width: 130px !important;" scope="col">CORREO</th>
+                        <th style="width: 80px !important;" scope="col">CLAVE</th>
+                        <th scope="col">ROL</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <!--<th scope="col"></th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for admin in administradores %}
+                    <form action="/edit/{{admin._id}}" method="POST">
+                        <tr>
+                            <!---->
+                            <th>
+                                <input type="text" class="form-control" value="{{admin._id}}" name="U_id" disabled>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{admin.usuario}}" name="U_nombreUser">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{admin.nombre}}" name="U_nombre">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{admin.apellido}}" name="U_apellido">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{admin.cedula}}" name="U_cedula">
+                            </th>
+                            <th>
+                                <input type="email" class="form-control" value="{{admin.correo}}" name="U_correo">
+                            </th>
+                            <th>
+                                <input type="password" class="form-control" value="{{admin.contrasenia}}" name="U_contrasenia"
+                                    id="contrasenia_Usu">
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="rol_Usu" name="U_rol">
+                                    <option value="{{admin.rol}}">Seleccione:</option>
+                                    {% for rol in roles%}
+                                        <option value="{{rol}}">{{rol}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="estado_Usu" name="U_estado">
+                                    <option value="{{admin.estado}}">{{admin.estado}}</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </th>
+                            <th>
+                                <button id="edi" class="btn btn-primary btn-blue"
+                                    type="submit">Editar</button>
+                            </th>
+                            <th>
+                                <a href="{{url_for('eliminar', id_usuario=admin._id)}}" id="eli"
+                                    class="btn btn-danger btn-red">Eliminar</a>
+                            </th>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <hr>
+
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/docente.png" width="8%"> Docentes
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(0, 114, 21, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th style="width: 50px !important;" scope="col">ID</th>
+                        <th style="width: 80px !important;" scope="col">NICKNAME</th>
+                        <th style="width: 120px !important;" scope="col">NOMBRE</th>
+                        <th style="width: 120px !important;" scope="col">APELLIDO</th>
+                        <th style="width: 90px !important;" scope="col">CEDULA</th>
+                        <th style="width: 170px !important;" scope="col">CORREO</th>
+                        <th style="width: 95px !important;" scope="col">CLAVE</th>
+                        <th style="width: 95px !important;" scope="col">MATERIA</th>
+                        <th style="width: 95px !important;" scope="col">CURSO</th>
+                        <th style="width: 90px !important;" scope="col">ROL</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <!--<th scope="col"></th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for docente in docentes %}
+                    <form action="/edit/{{docente._id}}" method="POST">
+                        <tr>
+                            <!---->
+                            <th>
+                                <input type="text" class="form-control" value="{{docente._id}}" name="U_id" disabled>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{docente.usuario}}" name="U_nombreUser">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{docente.nombre}}" name="U_nombre">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{docente.apellido}}" name="U_apellido">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{docente.cedula}}" name="U_cedula">
+                            </th>
+                            <th>
+                                <input type="email" class="form-control" value="{{docente.correo}}" name="U_correo">
+                            </th>
+                            <th>
+                                <input type="password" class="form-control" value="{{docente.contrasenia}}" name="U_contrasenia"
+                                    id="contrasenia_Usu">
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="Umateria" name="U_materia">
+                                    <option value="{{docente.materia}}">{{docente.materia}}</option>
+                                    {% for materias in materia %}
+                                        <option value="{{materias}}">{{materias}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="Ucurso" name="U_curso">
+                                    <option value="{{docente.curso}}">{{docente.curso}}</option>
+                                    {% for cursox in curso %}
+                                    <option value="{{cursox}}">{{cursox}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="rol_Usu" name="U_rol">
+                                    <option value="{{docente.rol}}">Seleccione:</option>
+                                    {% for rol in roles%}
+                                        <option value="{{rol}}">{{rol}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="estado_Usu" name="U_estado">
+                                    <option value="{{docente.estado}}">{{docente.estado}}</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </th>
+                            <th>
+                                <button id="edi" class="btn btn-primary btn-blue"
+                                    type="submit">Editar</button>
+                            </th>
+                            <th>
+                                <a href="{{url_for('eliminar', id_usuario=docente._id)}}" id="eli"
+                                    class="btn btn-danger btn-red">Eliminar</a>
+                            </th>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+
+    <hr>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/estudiante.png" width="8%"> Estudiantes
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+
+            <table class="table" style="background-color: rgba(0, 114, 21, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th style="width: 50px !important;" scope="col">ID</th>
+                        <th style="width: 70px !important;" scope="col">NICKNAME</th>
+                        <th style="width: 110px !important;" scope="col">NOMBRE</th>
+                        <th style="width: 110px !important;" scope="col">APELLIDO</th>
+                        <th style="width: 90px !important;" scope="col">CEDULA</th>
+                        <th style="width: 150px !important;" scope="col">CORREO</th>
+                        <th style="width: 70px !important;" scope="col">CLAVE</th>
+                        <th style="width: 85px !important;" scope="col">MATERIA</th>
+                        <th style="width: 85px !important;" scope="col">CURSO</th>
+                        <th style="width: 85px !important;" scope="col">ROL</th>
+                        <th scope="col">FOTO</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col"></th>
+                        <!--<th scope="col"></th>-->
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for estudiante in estudiantes %}
+                    <form action="/edit/{{estudiante._id}}" method="POST">
+                        <tr>
+                            <!---->
+                            <th>
+                                <input style="height: 50px !important;" type="text" class="form-control" value="{{estudiante._id}}" name="U_id" disabled>
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="text" class="form-control" value="{{estudiante.usuario}}" name="U_nombreUser">
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="text" class="form-control" value="{{estudiante.nombre}}" name="U_nombre">
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="text" class="form-control" value="{{estudiante.apellido}}" name="U_apellido">
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="text" class="form-control" value="{{estudiante.cedula}}" name="U_cedula">
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="email" class="form-control" value="{{estudiante.correo}}" name="U_correo">
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="password" class="form-control" value="{{estudiante.contrasenia}}" name="U_contrasenia"
+                                    id="contrasenia_Usu">
+                            </th>
+                            <th>
+                                <select style="height: 50px !important;" class="campo-lista form-control" id="Umateria" name="U_materia">
+                                    <option value="{{estudiante.materia}}">{{estudiante.materia}}</option>
+                                    {% for materias in materia %}
+                                        <option value="{{materias}}">{{materias}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <select style="height: 50px !important;" class="campo-lista form-control" id="Ucurso" name="U_curso">
+                                    <option value="{{estudiante.curso}}">{{estudiante.curso}}</option>
+                                    {% for cursox in curso %}
+                                    <option value="{{cursox}}">{{cursox}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <select style="height: 50px !important;" class="campo-lista form-control" id="Urol" name="U_rol">
+                                    <option value="{{estudiante.rol}}">Seleccione:</option>
+                                    {% for rol in roles%}
+                                        <option value="{{rol}}">{{rol}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <input style="height: 50px !important;" type="text" class="form-control" value="{{estudiante.foto}}" name="U_foto"
+                                    id="Ufoto">
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" style="height: 50px !important;" id="estado_Usu" name="U_estado">
+                                    <option value="{{estudiante.estado}}">{{estudiante.estado}}</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </th>
+                            <th>
+                                <button id="edi" class="btn btn-primary btn-blue"
+                                    type="submit" style="width: 53px !important;">Editar</button>
+                                <a href="{{url_for('eliminar', id_usuario=estudiante._id)}}" id="eli"
+                                    class="btn btn-danger btn-red" style="width: 53px !important;">Eliminar</a>
+                            </th>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                    </div>
+        <hr>
+    </div>
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-usuarios.js') }}"></script>
+<script src='../static/js/script-usuarios.js'></script>
+
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

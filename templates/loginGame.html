@@ -1,0 +1,103 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estilos.css">
+    <link rel="stylesheet" href="../static/css/modal.css">
+    <title>LoginGame</title>
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/videoback.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <section class="our-webcoderskull padding-lg">
+        <div class="container">
+            <div class="row heading heading-icon">
+                <h2 class="display-1"><img src="../static/assets/Imagen/niños.gif"> SELECCIÓN USUARIO <img
+                        src="../static/assets/Imagen/niños.gif"></h2>
+            </div>
+
+            <ul class="row">
+                {% for usuario in usuarios %}
+                <form action="/obtenerUsu" method="post" style="display: flex !important; width: 30%; padding-left: 7% !important;"> 
+                    <li class="">
+                        <div class="cnt-block equal-hight" style="width: 150%; max-width: 150% !important; height: 260px; border-radius: 10px;">
+                            <figure class="btn-formato" align="center">
+                                <button style="border: 0; padding: 0;" id="eli" class="btn btn-formato controlUsuario"
+                                    type="submit"><img src="../static/fotosEstudiantes/{{usuario.foto}}"
+                                        class="img-responsive" style="width: 150px;"></button>
+                            </figure>
+                            <h3>{{usuario.nombre}}<br>{{usuario.apellido}}</h3>
+                        </div>
+                        <input type="text" name="O_id" value="{{usuario._id}}" id="" hidden>
+                        <input type="text" name="O_usuario" value="{{usuario.usuario}}" id="" hidden>
+                        <input type="text" name="O_nombre" value="{{usuario.nombre}}" id="" hidden>
+                        <input type="text" name="O_apellido" value="{{usuario.apellido}}" id=""hidden>
+                        <input type="text" name="O_cedula" value="{{usuario.cedula}}" id="" hidden>
+                        <input type="text" name="O_correo" value="{{usuario.correo}}" id="" hidden>
+                        <input type="text" name="O_contrasenia" value="{{usuario.contrasenia}}" id="" hidden>
+                        <input type="text" name="O_materia" value="{{usuario.materia}}" id="" hidden>
+                        <input type="text" name="O_curso" value="{{usuario.curso}}" id="" hidden>
+                        <input type="text" name="O_rol" value="{{usuario.rol}}" id="" hidden>
+                        <input type="text" name="O_foto" value="{{usuario.foto}}" id="" hidden>
+
+                    </li>
+                </form>
+                {% endfor %}
+
+            </ul>
+
+            <ul class="col-md-3 col-lg-12" style="display: flex !important; position: relative; align-content: center;">
+                <li class="col">
+                    <div class="cnt-block equal-hight" style="height: 400px;">
+                        <figure><img src="../static/assets/Imagen/maestro.png" class="img-responsive" alt=""></figure>
+                        <h3>MAESTRO</h3>
+                        <form action="{{url_for('ingresarDocente')}}" method="post" name="Login_Form" class="form-signin">
+                            <input type="text" class="form-control" name="usuario_docente" placeholder="Correo electronico" required>
+                            <input type="password" class="form-control" name="pass_docente" placeholder="Contraseña" required>
+
+                            <button class="btn btn-lg btn-success btn-block"
+                                style="display: inline-block; width: 125px; margin: 12px;" name="Submit"
+                                type="Submit">Ingresar</button>
+                        </form>
+                    </div>
+                </li>
+                <li class="col">
+                    <div class="cnt-block equal-hight" style="height: 400px;">
+                        <figure><img src="../static/assets/Imagen/key.png" class="img-responsive" alt=""></figure>
+                        <h3>ADMINISTRADOR</h3>
+                        <form method="post" action="{{url_for('ingresarAdmin')}}" name="Login_Form" class="form-signin">
+                            <input type="email" class="form-control" name="usuario_admin"
+                                placeholder="Correo electronico" required />
+                            <input type="password" class="form-control" name="pass_admin" placeholder="Contraseña"
+                                required />
+
+                            <button class="btn btn-lg btn-danger btn-block"
+                                style="display: inline-block; width: 125px; margin: 12px;" name="Submit" value="Login"
+                                type="Submit">Ingresar</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    {% block errorUsuario %}
+    {% endblock %}
+
+    {% block correctoAdministrador %}
+    {% endblock %}
+
+    {% block correctoDocenteAlert %}
+    {% endblock %}
+
+</body>
+
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}

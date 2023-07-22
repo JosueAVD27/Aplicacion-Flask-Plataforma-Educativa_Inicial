@@ -1,0 +1,262 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estilosRegistroAcademico.css">
+    <link rel="stylesheet" href="../static/css/modal.css">
+    <title>Registro Academico</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/rojo.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/administrador"><strong>←
+            SALIR</strong></a>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 30px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/form.png" width="10%"> FORMULARIO DE REGISTRO ACADEMICO
+            </h1>
+        </div>
+        <hr>
+        <div class="formulariosAcademicos">
+            <div class="formularioAcademico">
+                <h3 class="display-5"
+                    style="font-size: 25px; text-align: center !important; font-weight: bold; margin-bottom: -60px !important; margin-top: 20px !important;">
+                    Registrar Ciclo
+                </h3>
+                <form action="registrarCiclo" method="POST" style="padding: 5%;" class="row g-3 needs-validation"
+                    novalidate>
+                    <div class="row ceparacion">
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Codigo *</label>
+                                <input type="text" name="A_codigo" id="Acodigo" class="campo form-control"
+                                    placeholder="Asigne un codigo">
+                                <div id="mensaje1" class="errores erroresnombre">Ingrese un Codigo</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Periodo *</label>
+                                <input type="text" name="A_periodo" id="Aperiodo" class="campo form-control"
+                                    placeholder="Ingrese un periodo academico" required>
+                                <div id="mensaje2" class="errores erroresnombre">Ingrese un periodo</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Información *</label>
+                                <input type="text" name="A_informacion" id="Ainformacion" class="campo form-control"
+                                    placeholder="Información del ciclo" required>
+                                <div id="mensaje3" class="errores erroresnombre">Ingrese la información general</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Estado *</label>
+                                <select class="campo-lista form-control" id="Aestado" name="A_estado">
+                                    <option value="">Seleccione estado</option>}
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                                <div id="mensaje4" class="errores erroresnombre">Seleccione el estado del ciclo</div>
+                                <div id="mensaje5" class="errores erroresnombre">Solo puede estar activo un ciclo</div>
+                            </div>
+                        </div>
+                        <div class="exterior-btn">
+                            <input type="submit" id="AEnviar" value="Enviar"
+                                class="col-lg-2 btn btn-primary btn-centro-0">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="formulariosAcademicos">
+            <div class="formularioAcademico1">
+                <h3 class="display-5"
+                    style="font-size: 25px; text-align: center !important; font-weight: bold; margin-bottom: -30px !important;">
+                    Registrar Curso
+                </h3>
+                <form action="registrarCurso" method="POST" style="padding: 5%;" class="row g-3 needs-validation"
+                    novalidate>
+                    <div class="row ceparacion">
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Nivel</label>
+                                <input type="text" name="A_nivel" id="Anivel" class="campo form-control" value="Preescolar" disabled>
+                                <div id="mensaje9" class="errores erroresnombre">Elija un nivel</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Curso *</label>
+                                    <select class="campo-lista form-control" id="Acurso" name="A_curso">
+                                        <option value="">Seleccione un curso:</option>}
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
+                                <div id="mensaje10" class="errores erroresnombre">Elija un curso</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Tutor *</label>
+                                    <select class="campo-lista form-control" id="Atutor" name="A_tutor">
+                                        <option value="">Seleccione un tutor:</option>}
+                                        {% for tutor in tutorU %}
+                                        <option value="{{tutor.nombre}} {{tutor.apellido}}">{{tutor.nombre}} {{tutor.apellido}}</option>
+                                        {% endfor %}
+                                    </select>
+                                <div id="mensaje11" class="errores erroresnombre">Ingrese un tutor del curso</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Ciclo Academico</label>
+                                <select class="campo-lista form-control" id="CperiodoA" name="C_cicloA" disabled>
+                                    {% for cicloCurso in cicloC %}
+                                    <option value="{{cicloCurso.codigo}}">{{cicloCurso.codigo}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="exterior-btn">
+                            <input type="submit" id="CEnviar" value="Enviar"
+                                class="col-lg-2 btn btn-primary btn-centro1">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="formularioAcademico2">
+                <h3 class="display-5"
+                    style="font-size: 25px; text-align: center !important; font-weight: bold; margin-bottom: -30px !important;">
+                    Registrar Materia
+                </h3>
+                <form action="registrarMateria" method="POST" style="padding: 5%;" class="row g-3 needs-validation"
+                    novalidate>
+                    <div class="row ceparacion">
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Nrc *</label>
+                                <input type="text" name="M_nrc" id="Mnrc" class="campo form-control"
+                                    placeholder="Ingrese un nrc" required>
+                                <div id="mensaje6" class="errores erroresnombre">Ingrese un nrc</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Nombre *</label>
+                                <input type="text" name="M_nombre" id="Mnombre" class="campo form-control"
+                                    placeholder="Nombre de la asignatura">
+                                <div id="mensaje7" class="errores erroresnombre">Ingrese un nombre</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Docente *</label>
+                                <select class="campo-lista form-control" id="Mdocente" name="M_docente">
+                                    <option value="">Seleccione el doncente:</option>
+                                    {% for nombresDocentes in nombresD %}
+                                        <option value="{{nombresDocentes.nombre}} {{nombresDocentes.apellido}}">{{nombresDocentes.nombre}} {{nombresDocentes.apellido}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div id="mensaje8" class="errores erroresnombre">Ingrese Seleccione un docente</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Curso *</label>
+                                <select class="campo-lista form-control" id="Mcurso" name="M_curso">
+                                    <option value="">Seleccione un curso:</option>
+                                    {% for curso in cursoM %}
+                                        <option value="{{curso.nivel}} {{curso.curso}}">{{curso.nivel}} {{curso.curso}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div id="mensaje12" class="errores erroresnombre">Seleccione un curso: </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <label for="">Horario *</label>
+                                <select class="campo-lista form-control" id="Mhorario" name="M_horario">
+                                    <option value="">Seleccione la hora:</option>
+                                    <option value="07:00h : 09:00h">07:00h : 09:00h</option>
+                                    <option value="09:00h : 11:00h">09:00h : 11:00h</option>
+                                    <option value="11:00h : 13:00h">11:00h : 13:00h</option>
+                                </select>
+                                <div id="mensaje13" class="errores erroresnombre">Seleccione la hora</div>
+                            </div>
+                        </div>
+                        <div class="exterior-btn">
+                            <input type="submit" id="MEnviar" value="Enviar"
+                                class="col-lg-2 btn btn-primary btn-centro2">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <hr>
+    <div class="cont-btn-x">
+        <a class="btn btn-primary btn-y" href="/asignacionesAcademicas">Lista academica</a>
+        <a class="btn btn-primary btn-x" href="/gestionAcademica">Gestion Academica</a>
+    </div>
+    <hr>
+
+    <!--Ciclo-->
+    {% block correctoCiclo %}
+    {% endblock %}
+
+    {% block errorCodigoExiste %}
+    {% endblock %}
+
+    {% block errorCicloActivo %}
+    {% endblock %}
+
+
+    <!--Materia-->
+    {% block correctoMateria %}
+    {% endblock %}
+    
+    {% block errorNRCExiste %}
+    {% endblock %}
+
+
+    <!--Curso-->
+    {% block correctoCurso %}
+    {% endblock %}
+
+    {% block errorCursoAsignado %}
+    {% endblock %}
+
+    {% block errorDocenteExiste %}
+    {% endblock %}
+
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-academico.js') }}"></script>
+<script src='../static/js/script-academico.js'></script>
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

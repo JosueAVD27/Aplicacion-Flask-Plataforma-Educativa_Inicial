@@ -1,0 +1,168 @@
+{% extends 'head.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/css/estiloRegistroPermisos.css">
+    <title>Asignaciones Academicas</title>
+    <!-- Jquery-->
+    <script src='../static/js/jquery-3.6.0.min.js'></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+</head>
+
+<body>
+    <!--Se agrega la etiiqueta video el cual será el background de nuesta página-->
+    <video src="../static/assets/Video/morado3.mp4" autoplay="true" muted="true" loop="true" poster=""></video>
+    <a style="position: absolute; width: 20%; top: 30px;" class="btn btn-lg btn-warning btn-block btn-danger"
+        style="font-size: 15px" href="/asignacionesPermisos"><strong>←
+            SALIR</strong></a>
+    <div class="cont-btn-x" style="position: absolute; top: 150px; right: 150px;">
+        <a class="btn btn-primary btn-y" href="/registroPermisos">Registrar</a>
+    </div>
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/rol2.png" width="8%"> Permisos
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(89, 0, 114, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th style="width: 165px;" scope="col">ID</th>
+                        <th style="width: 170px;" scope="col">NOMBRE</th>
+                        <th style="width: 110px;" scope="col">PERMISO</th>
+                        <th scope="col">DESCRIPCIÓN</th>
+                        <th style="width: 100px;" scope="col"></th>
+                        <th style="width: 100px;" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for permisos in permisosE %}
+                    <form action="/editPE/{{permisos._id}}" method="POST">
+                        <tr>
+                            <!---->
+                            <th>
+                                <input type="text" class="form-control" value="{{permisos._id}}" name="P_id" disabled>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{permisos.nombre}}" name="P_nombre">
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="Ppermiso" name="P_permiso">
+                                    <option value="{{permisos.permiso}}">{{permisos.permiso}}</option>
+                                    <option value="Lector">Lector</option>
+                                    <option value="Gerencial">Gerencial</option>
+                                    <option value="Administrativo">Administrativo</option>
+                                </select>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{permisos.descripcion}}"
+                                    name="P_descripcion">
+                            </th>
+                            <th>
+                                <button id="edi" class="btn btn-primary btn-blue"
+                                    type="submit">Editar</button>
+                            </th>
+                            <th>
+                                <a href="{{url_for('eliminarRPE', id_permiso=permisos._id)}}" id="eli"
+                                 class="btn btn-primary btn-red">Eliminar</a>
+                            </th>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <hr>
+
+    <div class="container">
+        <hr>
+        <div class="row heading heading-icon">
+            <h1 class="display-5" style="font-size: 40px; text-align: center !important; font-weight: bold;">
+                <img src="../static/assets/Imagen/permiso2.png" width="8%"> Roles
+            </h1>
+        </div>
+        <hr>
+        <div class="">
+            <table class="table" style="background-color: rgba(89, 0, 114, 0.8); color: black;">
+                <thead class="table-dark">
+                    <tr>
+                        <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
+                        <th style="width: 165px;" scope="col">ID</th>
+                        <th style="width: 170px;" scope="col">ROL</th>
+                        <th style="width: 110px;" scope="col">PERMISO</th>
+                        <th scope="col">DESCRIPCIÓN</th>
+                        <th style="width: 100px;" scope="col"></th>
+                        <th style="width: 100px;" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--ACCEDEMOS A LA LISTA CON UN FOR-->
+                    {% for rol in rolesE %}
+                    <form action="/editRE/{{rol._id}}" method="POST">
+                        <tr>
+                            <!---->
+                            <th>
+                                <input type="text" class="form-control" value="{{rol._id}}" name="R_id" disabled>
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" name="R_rol">
+                                    <option value="{{rol.rol}}">{{rol.rol}}</option>
+                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="Docente">Docente</option>
+                                        <option value="Administrador">Administrador</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="campo-lista form-control" id="Ppermiso" name="R_permiso">
+                                    <option value="{{rol.permiso}}">{{rol.permiso}}</option>
+                                    {% for permisox in permisoL %}
+                                        <option value="{{permisox}}">{{permisox}}</option>
+                                    {% endfor %}
+                                </select>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" value="{{rol.descripcion}}"
+                                    name="P_descripcion">
+                            </th>
+                            <th>
+                                <button id="edi" class="btn btn-primary btn-blue"
+                                    type="submit">Editar</button>
+                            </th>
+                            <th>
+                                <a href="{{url_for('eliminarRRE', id_rol=rol._id)}}" id="eli"
+                                 class="btn btn-danger btn-red">Eliminar</a>
+                            </th>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+</body>
+
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='../static/js/script.js'></script>
+<script src="{{ url_for('static', filename='js/script-usuarios.js') }}"></script>
+<script src='../static/js/script-usuarios.js'></script>
+
+<!-- Jquery-->
+<script src='../static/js/jquery-3.6.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

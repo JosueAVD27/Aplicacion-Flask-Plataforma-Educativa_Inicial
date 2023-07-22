@@ -1,0 +1,88 @@
+##Crea COLECCIOMES
+
+db.createCollection('Permisos')
+db.createCollection('Roles')
+db.createCollection('Ciclos')
+db.createCollection('Usuarios')
+db.createCollection('Materias')
+db.createCollection('Evaluaciones')
+
+
+
+##Crea la coleccion PERMISOS
+
+db.Permisos.insert([
+{"permiso": "ADMIN", "descripcion":"Todos los permisos"},
+{"permiso": "LECTURA", "descripcion":"Solo ver aplicación"},
+{"permiso": "LECTURA Y ESCRITURA", "descripcion":"Editar y ver registro de estudiantes"}])
+
+
+
+##Crea la coleccion ROLES
+
+db.Roles.insert([
+{"rol": "Administrador", "permiso": "ADMIN"}, 
+{"rol": "Estudiante", "permiso": "LECTURA"}, 
+{"rol": "Docente", "permiso": "LECTURA Y ESCRITURA"}])
+
+
+#################################################
+Consulta: Encontrar roles con sus permisos
+
+db.Roles.aggregate([
+	{$lookup:
+		{
+			from: "Permisos", 
+			localField: "permiso", 
+			foreignField: "permiso", 
+			as: "Permiso"
+		}
+	}, {$unwind: "$Permiso"},
+	{$match: { rol: "Administrador"}}
+]).pretty()
+
+
+
+
+
+
+
+##Crea la coleccion CICLO ACADEMICO
+
+db.Ciclo.insert([
+{"codigo": "001N22", "periodo": "082022", "informacion": "Agosto del 2022", "estado":"Activo"},
+{"codigo": "002N22", "periodo": "092022", "informacion": "Septiembre del 2022", "estado":"Inactivo"}])
+
+
+
+##Crea la coleccion Usuarios
+
+db.Usuarios.insert([
+{"nombre": "Admin", "apellido": "", "cedula":"2350793218", "correo":"admin@espe.edu.ec", "contrasenia": "admin", "rol": "Administrador", "estado": "Activo"},
+{"nombre": "Josue", "apellido": "Velasquez", "cedula":"2350793218", "correo":"ajvelasquez4@espe.edu.ec", "contrasenia": "", "rol": "Estudiante", "estado": "Activo"},
+{"nombre": "Armando", "apellido": "Delgado", "cedula":"2350793218", "correo":"ajdelgado4@espe.edu.ec", "contrasenia": "12345", "rol": "Docente", "estado": "Activo"},
+{"nombre": "Daniela", "apellido": "Gonzalez", "cedula":"2350793218", "correo":"dbgonzalez1@espe.edu.ec", "contrasenia": "", "rol": "Estudiante", "estado": "Activo"}])
+
+
+
+#################################################
+Consulta: Encontrar usuario por rol.
+
+db.Usuarios.aggregate([
+	{$lookup:
+		{
+			from: "Roles", 
+			localField: "rol", 
+			foreignField: "rol", 
+			as: "Rol"
+		}
+	}, {$unwind: "$Rol"},
+	{$match: { "Rol.rol": "Estudiante"}}
+]).pretty()
+
+
+##################################################
+##Funcionamiento de las notas, insertar el id en el py de obtener
+
+db.Obtenido.insert([
+{"usuario": "", "nombre": "", "apellido": "", "cedula": "", "correo":"", "contrasenia": "", "materia": "", "curso": "", "rol": "", "foto": ""}])

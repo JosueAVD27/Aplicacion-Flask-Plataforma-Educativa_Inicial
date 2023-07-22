@@ -1,0 +1,23 @@
+{% extends 'formularios/registroAcademico.html' %}
+
+{% block errorCicloActivo %}
+
+<ul class="container contenedorM">
+    <li>
+        <div align="center" class="mensajeM" style="font-size: 12px; width: 100%;">
+            <div class="modal-header">
+                <h5 class="modal-title" style="padding-top: 10%; font-size: x-large; color: black !important"><strong>Mensaje de
+                        Alerta!</strong></h5>
+                <img src="../static/assets/Imagen/errorcicloactivo.png" width="25%">
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 15px; color: black !important">Recuerde que sólo puede existir un ciclo activo!</p>
+            </div>
+            <div class="modal-footer" style="padding-right: 35%;">
+                <a class="btn btn-block btn-danger" href="/registroAcademico" style="width: 50%; font-size: 15px;">Aceptar</a>
+            </div>
+        </div>
+    </li>
+</ul>
+
+{% endblock %}
